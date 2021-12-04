@@ -1,43 +1,56 @@
 {
-  "name": "order-management-ui",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.10",
-    "@types/jest": "^26.0.15",
-    "@types/node": "^12.0.0",
-    "@types/react": "^17.0.0",
-    "@types/react-dom": "^17.0.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-scripts": "4.0.3",
-    "typescript": "^4.1.2",
-    "web-vitals": "^1.0.1"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
+	"name": "order-management-ui",
+	"version": "1.0.0",
+	"author": {
+		"name": "Sourodeep Chatterjee",
+		"email": "sourodeep224@outlook.com",
+		"url": "https://github.com/sdc224"
+	},
+	"private": true,
+	"license": "MIT",
+	"dependencies": {
+		"@mui/material": "^5.2.2",
+		"@mui/styled-engine-sc": "^5.1.0",
+		"@testing-library/jest-dom": "^5.11.4",
+		"@testing-library/react": "^11.1.0",
+		"@testing-library/user-event": "^12.1.10",
+		"@types/jest": "^26.0.15",
+		"@types/node": "^12.0.0",
+		"@types/react": "^17.0.0",
+		"@types/react-dom": "^17.0.0",
+		"react": "^17.0.2",
+		"react-dom": "^17.0.2",
+		"react-scripts": "4.0.3",
+		"styled-components": "^5.3.3",
+		"typescript": "^4.1.2",
+		"web-vitals": "^1.0.1"
+	},
+	"scripts": {
+		"commit": "cz",
+		"lint": "cross-env eslint . --cache --ext .js,.ts,.tsx",
+		"lint:fix": "yarn --silent lint --fix",
+		"postlint:fix": "cross-env prettier --ignore-path .eslintignore --write '**/*.{js,ts,tsx,json,html,css,less,scss,yml}'",
+		"start": "react-scripts start",
+		"build": "react-scripts build",
+		"test": "react-scripts test",
+		"eject": "react-scripts eject"
+	},
+	"eslintConfig": {
+		"extends": [
+			"react-app",
+			"react-app/jest"
+		]
+	},
+	"browserslist": {
+		"production": [
+			">0.2%",
+			"not dead",
+			"not op_mini all"
+		],
+		"development": [
+			"last 1 chrome version",
+			"last 1 firefox version",
+			"last 1 safari version"
+		]
+	}
 }
