@@ -10,13 +10,14 @@ import CustomIconButton from "./../Buttons/IconButton";
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
 
-interface OfferCardProps {
+export interface OfferCardProps {
 	percent: number;
 	title: string;
 	rating?: number;
 	currencySymbol?: string;
 	price: number;
 	crossedPrice: number;
+	image: string;
 }
 
 const OfferCard: React.FC<OfferCardProps> = ({
@@ -25,11 +26,12 @@ const OfferCard: React.FC<OfferCardProps> = ({
 	rating,
 	currencySymbol = "₹",
 	price,
-	crossedPrice
+	crossedPrice,
+	image
 }) => {
 	const classes = useCardsStyles();
 	return (
-		<Box paddingTop={4} paddingBottom={8}>
+		<Box paddingBottom={8}>
 			<Paper
 				className={clsx(classes.flexColumn, classes.offerCardPaper)}
 				elevation={1}
@@ -45,19 +47,29 @@ const OfferCard: React.FC<OfferCardProps> = ({
 						className={classes.offerCardChip}
 						label={`${percent}% off`}
 					/>
+					<span className={classes.imgSpan}>
+						<span
+							className={clsx(
+								classes.imgSpan,
+								classes.imgSpanInside
+							)}
+						/>
+						<img
+							src={image}
+							alt="Bla Bla"
+							className={classes.img}
+						/>
+					</span>
 				</Box>
 				<Box display="flex" padding="1rem">
 					<Box
 						display="flex"
+						flexDirection="column"
 						flex="1 1 0px"
 						minWidth={0}
 						marginRight={8}
 					>
-						<Typography
-							variant="h3"
-							noWrap
-							className={classes.offerCardTitle}
-						>
+						<Typography noWrap className={classes.offerCardTitle}>
 							{title}
 						</Typography>
 						{rating && (
@@ -71,13 +83,17 @@ const OfferCard: React.FC<OfferCardProps> = ({
 						<Box display="flex" alignItems="center" marginTop={4}>
 							<Typography
 								className={classes.offerCardPrice}
-							>{`${currencySymbol}${price}`}</Typography>
+							>{`${currencySymbol}${price.toFixed(
+								2
+							)}`}</Typography>
 							<Typography
 								className={clsx(
 									classes.offerCardPrice,
 									classes.crossedPrice
 								)}
-							>{`${currencySymbol}${crossedPrice}`}</Typography>
+							>{`${currencySymbol}${crossedPrice.toFixed(
+								2
+							)}`}</Typography>
 						</Box>
 					</Box>
 					<Box

@@ -18,7 +18,11 @@ const Section: React.FC<SectionProps> = ({ icon, title, children, action }) => {
 			<Box className={classes.header}>
 				<Box display="flex">
 					{icon && <Box className={classes.icon}>{icon}</Box>}
-					{title && <Typography variant="h3">{title}</Typography>}
+					{title && (
+						<Typography className={classes.title} variant="h2">
+							{title}
+						</Typography>
+					)}
 				</Box>
 				{action && <ViewAllButton />}
 			</Box>

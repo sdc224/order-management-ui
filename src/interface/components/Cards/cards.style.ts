@@ -34,6 +34,8 @@ const useCardsStyles = makeStyles(() => ({
 	},
 	offerCardTitle: {
 		textOverflow: "ellipsis",
+		fontWeight: 600,
+		fontSize: 14,
 		marginBottom: 8,
 		lineHeight: "1.5"
 	},
@@ -45,6 +47,32 @@ const useCardsStyles = makeStyles(() => ({
 	crossedPrice: {
 		textDecoration: "line-through",
 		color: "grey"
+	},
+	imgSpan: {
+		display: "block",
+		overflow: "hidden",
+		width: "initial",
+		height: "initial",
+		background: "none",
+		opacity: 1,
+		border: 0,
+		margin: 0,
+		padding: 0,
+		position: "relative"
+	},
+	imgSpanInside: {
+		padding: "100% 0px 0px"
+	},
+	img: {
+		position: "absolute",
+		inset: 0,
+		padding: 0,
+		width: 0,
+		height: 0,
+		minWidth: "100%",
+		maxWidth: "100%",
+		minHeight: "100%",
+		maxHeight: "100%"
 	}
 }));
 

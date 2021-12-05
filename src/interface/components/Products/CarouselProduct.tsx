@@ -9,6 +9,7 @@ interface CarouselProductProps {
 	title: string;
 	description: string;
 	buttonText: string;
+	imgPath: string;
 	handleButtonClick?: () => {};
 }
 
@@ -16,6 +17,7 @@ const CarouselProduct: React.FC<CarouselProductProps> = ({
 	title,
 	description,
 	buttonText,
+	imgPath,
 	handleButtonClick
 }) => {
 	const classes = useCarouselProductStyles();
@@ -25,8 +27,9 @@ const CarouselProduct: React.FC<CarouselProductProps> = ({
 			textAlign="left"
 			justifyContent="space-between"
 			alignItems="center"
+			width="100%"
 		>
-			<Grid container xs={3}>
+			<Grid container spacing={3} className={classes.container}>
 				<Grid className={classes.gridItem} item xs={12} sm={5}>
 					<Typography className={classes.title} variant="h1">
 						{title}
@@ -34,12 +37,17 @@ const CarouselProduct: React.FC<CarouselProductProps> = ({
 					<Typography className={classes.description}>
 						{description}
 					</Typography>
-					<Button variant="contained" onClick={handleButtonClick}>
+					<Button
+						className={classes.button}
+						variant="contained"
+						color="secondary"
+						onClick={handleButtonClick}
+					>
 						{buttonText}
 					</Button>
 				</Grid>
 				<Grid item xs={12} sm={5}>
-					<img src="/static" alt="Product" className={classes.img} />
+					<img src={imgPath} alt="Product" className={classes.img} />
 				</Grid>
 			</Grid>
 		</Box>

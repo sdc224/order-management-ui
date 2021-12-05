@@ -17,6 +17,13 @@ const useSectionStyles = makeStyles(() => ({
 		display: "flex",
 		marginRight: 8,
 		alignItems: "center"
+	},
+	title: {
+		fontSize: 25,
+		fontWeight: 700,
+		margin: 0,
+		lineHeight: 1,
+		whiteSpace: "normal"
 	}
 }));
 

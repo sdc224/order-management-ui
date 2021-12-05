@@ -6,6 +6,10 @@ const useButtonStyles = makeStyles(() => ({
 		marginLeft: 8,
 		alignItems: "center",
 		color: "rgb(125, 135, 156)"
+	},
+	customIconButton: {
+		padding: 0,
+		minWidth: 0
 	}
 }));
 
