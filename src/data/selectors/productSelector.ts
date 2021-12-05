@@ -19,7 +19,7 @@ const useProductSelector = () => {
 	);
 
 	const fetchProducts = React.useCallback(
-		() => dispatch(fetchProduct()),
+		(q?: string) => dispatch(fetchProduct(q)),
 		[dispatch]
 	);
 

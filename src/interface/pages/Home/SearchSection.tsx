@@ -2,7 +2,7 @@ import React from "react";
 import Box from "@material-ui/core/Box";
 import Container from "@material-ui/core/Container";
 import Section from "../../components/Section";
-import FlashOnIcon from "@material-ui/icons/FlashOn";
+import SearchIcon from "@material-ui/icons/Search";
 import Grid from "@material-ui/core/Grid";
 import { OfferCard } from "../../components/Cards";
 import useHomeStyles from "./home.styles";
@@ -10,19 +10,19 @@ import Flash2 from "../../../assets/images/flash-2.png";
 import { Product } from "../../../data/types/productsTypes";
 import { getMockBetweenTwo } from "../../../utils/mocks/mockNumber";
 
-interface DealsSectionProps {
+interface SearchSectionProps {
 	products?: Product[];
 }
 
-const DealsSection: React.FC<DealsSectionProps> = ({ products = [] }) => {
+const SearchSection: React.FC<SearchSectionProps> = ({ products = [] }) => {
 	const classes = useHomeStyles();
 
 	return (
 		<Box marginBottom={60 / 8}>
 			<Container className={classes.container} maxWidth="lg">
 				<Section
-					title="Flash Deals"
-					icon={<FlashOnIcon color="secondary" />}
+					title="Showing Search Results"
+					icon={<SearchIcon color="secondary" />}
 				>
 					<Grid
 						className={classes.gridContainer}
@@ -33,10 +33,10 @@ const DealsSection: React.FC<DealsSectionProps> = ({ products = [] }) => {
 							<Grid key={product.id} item xs={6} md={4} lg={3}>
 								<OfferCard
 									title={product.name}
-									price={product.price!}
+									price={product.price || 0}
 									crossedPrice={getMockBetweenTwo(
-										product.price!,
-										product.price! * 2
+										product.price || 0,
+										(product.price || 0) * 2
 									)}
 									image={Flash2}
 									percent={getMockBetweenTwo(1, 60)}
@@ -51,4 +51,4 @@ const DealsSection: React.FC<DealsSectionProps> = ({ products = [] }) => {
 	);
 };
 
-export default DealsSection;
+export default SearchSection;

@@ -5,11 +5,25 @@ import TextField from "@material-ui/core/TextField";
 import SearchOutlinedIcon from "@material-ui/icons/SearchOutlined";
 // import Box from "@material-ui/core/Box";
 import useSearchStyles from "./search.styles";
+import useSearchSelector from "../../../data/selectors/searchSelector";
 
 interface Props {}
 
 const Search = (props: Props) => {
 	const classes = useSearchStyles();
+
+	const { searchKey, changeKey, closeSearch } = useSearchSelector();
+
+	const handleChange = (
+		event: React.ChangeEvent<{
+			value: unknown;
+		}>
+	) => {
+		changeKey(event?.target?.value as string);
+		if ((event?.target?.value as string).length === 0) {
+			closeSearch();
+		}
+	};
 
 	return (
 		<FormControl className={classes.form} fullWidth>
@@ -20,6 +34,7 @@ const Search = (props: Props) => {
 				placeholder="Searching for..."
 				fullWidth
 				margin="normal"
+				value={searchKey}
 				InputProps={{
 					startAdornment: <SearchOutlinedIcon fontSize="small" />
 					// endAdornment: (
@@ -28,6 +43,7 @@ const Search = (props: Props) => {
 					// 	</Button>
 					// )
 				}}
+				onChange={handleChange}
 			/>
 		</FormControl>
 	);

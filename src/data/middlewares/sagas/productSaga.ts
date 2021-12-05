@@ -1,4 +1,4 @@
-import { call, put, takeLatest } from "@redux-saga/core/effects";
+import { call, delay, put, takeLatest } from "@redux-saga/core/effects";
 import { PayloadAction } from "typesafe-actions";
 import axios from "axios";
 import { ProductsActionTypes } from "../../types/productsTypes";
@@ -20,7 +20,14 @@ const fetchProducts = async (
 
 function* workerProductSaga(action: PayloadAction<string, any>) {
 	try {
-		const response: ResponseGenerator = yield call(fetchProducts);
+		if (typeof action.payload === "string") {
+			// Search scenario
+			yield delay(300);
+		}
+
+		const response: ResponseGenerator = yield call(fetchProducts, {
+			q: action.payload
+		});
 
 		if (response.status && response.data) {
 			yield put(setProductList(response.data.data));
