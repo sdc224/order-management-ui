@@ -6,6 +6,7 @@ import {
 } from "../types/productsTypes";
 
 export const initialState: ProductsState = {
+	loading: false,
 	productsList: []
 };
 
@@ -30,13 +31,29 @@ const productReducer = (
 				)
 			};
 
+		case ProductsActionTypes.FETCH_PRODUCT:
+			return {
+				...state,
+				productsList: [],
+				loading: true,
+				error: undefined
+			};
+
 		case ProductsActionTypes.SET_PRODUCT_LIST:
 			const productsList = [];
 			if (!Array.isArray(action.payload))
 				productsList.push(action.payload as Product);
 			else productsList.push(...(action.payload as Product[]));
 
-			return { ...state, productsList };
+			return { ...state, productsList, loading: false, error: undefined };
+
+		case ProductsActionTypes.FETCH_PRODUCT_ERROR:
+			return {
+				...state,
+				productsList: [],
+				loading: false,
+				error: action.payload
+			};
 
 		default:
 			return state;
