@@ -1,6 +1,7 @@
 export const ProductsActionTypes = {
 	ADD_PRODUCT: "@@product/ADD_PRODUCT",
-	REMOVE_PRODUCT: "@@product/REMOVE_PRODUCT"
+	REMOVE_PRODUCT: "@@product/REMOVE_PRODUCT",
+	SET_PRODUCT_LIST: "@@product/SET_PRODUCT_LIST"
 };
 
 export interface Product {

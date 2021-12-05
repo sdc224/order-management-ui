@@ -11,20 +11,32 @@ export const initialState: ProductsState = {
 
 const productReducer = (
 	state = initialState,
-	action: PayloadAction<string, Product>
+	action: PayloadAction<string, any>
 ): ProductsState => {
 	switch (action.type) {
 		case ProductsActionTypes.ADD_PRODUCT:
-			return { productsList: [...state.productsList, action.payload] };
+			return {
+				...state,
+				productsList: [...state.productsList, action.payload as Product]
+			};
 
 		case ProductsActionTypes.REMOVE_PRODUCT:
 			return {
+				...state,
 				productsList: state.productsList.filter(
 					(p) =>
-						p.id === action.payload.id &&
-						p.name === action.payload.name
+						p.id === (action.payload as Product).id &&
+						p.name === (action.payload as Product).name
 				)
 			};
+
+		case ProductsActionTypes.SET_PRODUCT_LIST:
+			const productsList = [];
+			if (!Array.isArray(action.payload))
+				productsList.push(action.payload as Product);
+			else productsList.push(...(action.payload as Product[]));
+
+			return { ...state, productsList };
 
 		default:
 			return state;
