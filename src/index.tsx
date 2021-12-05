@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import CssBaseline from "@material-ui/core/CssBaseline";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import configureStore from "./data/configureStore";
@@ -9,6 +10,7 @@ const store = configureStore();
 
 ReactDOM.render(
 	<React.StrictMode>
+		<CssBaseline />
 		<Root store={store} />
 	</React.StrictMode>,
 	document.getElementById("root")

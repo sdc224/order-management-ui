@@ -1,9 +1,9 @@
 import React from "react";
 import clsx from "clsx";
-// import { useMediaQuery } from "@material-ui/core";
-import { makeStyles, useTheme, Theme } from "@material-ui/core/styles";
+import { makeStyles, Theme } from "@material-ui/core/styles";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import TopBar from "../components/TopBar";
 
 const useStyles = makeStyles((theme: Theme) => ({
 	root: {
@@ -55,6 +55,7 @@ const Main = ({ children }: MainProps) => {
 			})}
 		>
 			<Header />
+			<TopBar />
 			{/* <Sidebar
 				onClose={handleSidebarClose}
 				open={shouldOpenSidebar}

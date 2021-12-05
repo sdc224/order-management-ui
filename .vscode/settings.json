@@ -37,5 +37,5 @@
 
 	// Extension Level Settings
 
-	"cSpell.words": ["typesafe"]
+	"cSpell.words": ["clsx", "typesafe"]
 }
