@@ -8,6 +8,9 @@ const useHomeStyles = makeStyles(() => ({
 		display: "block",
 		padding: "2rem 16px"
 	},
+	white: {
+		backgroundColor: "white"
+	},
 	gridContainer: {
 		display: "flex",
 		justifyContent: "space-between",

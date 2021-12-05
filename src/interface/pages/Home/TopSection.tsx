@@ -5,6 +5,7 @@ import Container from "@material-ui/core/Container";
 import useHomeStyles from "./home.styles";
 import Carousel from "react-material-ui-carousel";
 import { CarouselProduct } from "../../components/Products";
+import clsx from "clsx";
 
 interface Props {}
 
@@ -32,7 +33,10 @@ const TopSection = (props: Props) => {
 
 	return (
 		<Box marginBottom={60 / 8}>
-			<Container className={classes.container} maxWidth="lg">
+			<Container
+				className={clsx(classes.container, classes.white)}
+				maxWidth="lg"
+			>
 				<Box position="relative" minWidth={0}>
 					<Carousel animation="slide">
 						{array.map((item) => (

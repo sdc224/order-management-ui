@@ -60,7 +60,7 @@ const DealsSection = (props: Props) => {
 						spacing={3}
 					>
 						{offers.map((offer) => (
-							<Grid key={offer.id} item xs={3}>
+							<Grid key={offer.id} item xs={6} md={4} lg={3}>
 								<OfferCard {...offer} />
 							</Grid>
 						))}

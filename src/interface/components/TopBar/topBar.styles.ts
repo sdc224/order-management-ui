@@ -20,7 +20,8 @@ const useTopBarStyles = makeStyles(() => ({
 		height: "100%"
 	},
 	iconButton: {
-		backgroundColor: "rgb(243, 245, 249)"
+		backgroundColor: "rgb(243, 245, 249)",
+		marginLeft: 16
 	}
 }));
 
