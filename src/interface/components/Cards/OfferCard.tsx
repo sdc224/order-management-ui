@@ -9,10 +9,12 @@ import { Rating } from "@material-ui/lab";
 import CustomIconButton from "./../Buttons/IconButton";
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
+import useCartSelector from "../../../data/selectors/cartSelector";
 
 export interface OfferCardProps {
+	id: string;
 	percent: number;
-	title: string;
+	name: string;
 	rating?: number;
 	currencySymbol?: string;
 	price: number;
@@ -21,8 +23,9 @@ export interface OfferCardProps {
 }
 
 const OfferCard: React.FC<OfferCardProps> = ({
+	id,
 	percent,
-	title,
+	name,
 	rating,
 	currencySymbol = "₹",
 	price,
@@ -30,6 +33,20 @@ const OfferCard: React.FC<OfferCardProps> = ({
 	image
 }) => {
 	const classes = useCardsStyles();
+	const [count, setCount] = React.useState(0);
+
+	const { increment, decrement } = useCartSelector();
+
+	const handleIncrement = () => {
+		setCount(count + 1);
+		increment({ cartProduct: { id, name, quantity: 1 }, value: 1 });
+	};
+
+	const handleDecrement = () => {
+		setCount(count - 1);
+		decrement({ cartProduct: { id, name, quantity: 1 }, value: 1 });
+	};
+
 	return (
 		<Box paddingBottom={8}>
 			<Paper
@@ -70,7 +87,7 @@ const OfferCard: React.FC<OfferCardProps> = ({
 						marginRight={8}
 					>
 						<Typography noWrap className={classes.offerCardTitle}>
-							{title}
+							{name}
 						</Typography>
 						{rating && (
 							<Rating
@@ -103,9 +120,19 @@ const OfferCard: React.FC<OfferCardProps> = ({
 						justifyContent="flex-start"
 						width={30}
 					>
-						<CustomIconButton icon={<AddIcon />} />
-						<Typography>1</Typography>
-						<CustomIconButton icon={<RemoveIcon />} />
+						<CustomIconButton
+							icon={<AddIcon />}
+							onClick={handleIncrement}
+						/>
+						{count > 0 && (
+							<>
+								<Typography>{count}</Typography>
+								<CustomIconButton
+									icon={<RemoveIcon />}
+									onClick={handleDecrement}
+								/>
+							</>
+						)}
 					</Box>
 				</Box>
 			</Paper>

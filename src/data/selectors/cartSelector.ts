@@ -9,17 +9,27 @@ import {
 	addProduct,
 	removeProduct,
 	incrementProduct,
-	decrementProduct
+	decrementProduct,
+	fetchCartProduct
 } from "../actions/cartActions";
 
 const useCartSelector = () => {
 	const dispatch = useDispatch();
+
+	const loading = useSelector((state: CartAwareState) => state.cart.loading);
+	const error = useSelector((state: CartAwareState) => state.cart.error);
 
 	const productsList = useSelector(
 		(state: CartAwareState) => state.cart.productsList
 	);
 
 	const length = useSelector((state: CartAwareState) => state.cart.length);
+	const total = useSelector((state: CartAwareState) => state.cart.total);
+
+	const fetch = React.useCallback(
+		() => dispatch(fetchCartProduct()),
+		[dispatch]
+	);
 
 	const add = React.useCallback(
 		(mode: CartProduct) => dispatch(addProduct(mode)),
@@ -42,8 +52,12 @@ const useCartSelector = () => {
 	);
 
 	return {
+		loading,
+		error,
 		productsList,
 		length,
+		total,
+		fetch,
 		add,
 		remove,
 		increment,

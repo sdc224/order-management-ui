@@ -1,6 +1,9 @@
 import { Product } from "./productsTypes";
 
 export const CartActionTypes = {
+	FETCH_CART_PRODUCT: "@@cart/FETCH_CART_PRODUCT",
+	FETCH_CART_PRODUCT_ERROR: "@@cart/FETCH_CART_PRODUCT_ERROR",
+	SET_CART_PRODUCT: "@@cart/SET_CART_PRODUCT",
 	ADD_PRODUCT: "@@cart/ADD_PRODUCT",
 	INCREMENT_PRODUCT: "@@cart/INCREMENT_PRODUCT",
 	REMOVE_PRODUCT: "@@cart/REMOVE_PRODUCT",
@@ -18,8 +21,11 @@ export interface CartProductQuantity {
 }
 
 export interface CartState {
-	productsList: CartProduct[];
+	loading: boolean;
+	productsList: any[];
 	length: number;
+	error?: string;
+	total: number;
 }
 
 export interface CartAwareState {

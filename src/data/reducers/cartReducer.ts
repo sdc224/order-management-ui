@@ -1,20 +1,25 @@
 import { PayloadAction } from "typesafe-actions";
-import {
-	CartActionTypes,
-	CartProduct,
-	CartProductQuantity,
-	CartState
-} from "../types/cartTypes";
+import { CartActionTypes, CartProduct, CartState } from "../types/cartTypes";
 
 export const initialState: CartState = {
+	loading: false,
 	productsList: [],
-	length: 0
+	length: 0,
+	total: 0
 };
 
 const cartReducer = (
 	state = initialState,
 	action: PayloadAction<string, any>
 ): CartState => {
+	if (action.type === CartActionTypes.FETCH_CART_PRODUCT) {
+		return { ...state, loading: true, error: undefined };
+	}
+
+	if (action.type === CartActionTypes.FETCH_CART_PRODUCT_ERROR) {
+		return { ...state, loading: false, error: action.payload as string };
+	}
+
 	if (action.type === CartActionTypes.ADD_PRODUCT) {
 		let length = state.length;
 		let productsList = [
@@ -31,7 +36,9 @@ const cartReducer = (
 			length = productsList.length + quantity;
 
 		return { ...state, productsList, length };
-	} else if (action.type === CartActionTypes.REMOVE_PRODUCT) {
+	}
+
+	if (action.type === CartActionTypes.REMOVE_PRODUCT) {
 		let length = state.length;
 
 		const productsList = state.productsList.filter(
@@ -49,39 +56,23 @@ const cartReducer = (
 			length = productsList.length + quantity;
 
 		return { ...state, productsList, length };
-	} else if (action.type === CartActionTypes.INCREMENT_PRODUCT) {
+	}
+
+	if (
+		action.type === CartActionTypes.INCREMENT_PRODUCT ||
+		action.type === CartActionTypes.DECREMENT_PRODUCT ||
+		action.type === CartActionTypes.SET_CART_PRODUCT
+	) {
 		return {
 			...state,
-			productsList: state.productsList.map((product) =>
-				product.id ===
-				(action.payload as CartProductQuantity)?.cartProduct?.id
-					? {
-							...product,
-							quantity:
-								product.quantity! +
-								(action.payload as CartProductQuantity).value
-					  }
-					: product
-			),
-			length: state.length + (action.payload as CartProductQuantity).value
+			loading: false,
+			error: undefined,
+			productsList: action.payload.cartProduct,
+			total: action.payload.total
 		};
-	} else if (action.type === CartActionTypes.DECREMENT_PRODUCT) {
-		return {
-			...state,
-			productsList: state.productsList.map((product) =>
-				product.id ===
-				(action.payload as CartProductQuantity)?.cartProduct?.id
-					? {
-							...product,
-							quantity:
-								product.quantity! -
-								(action.payload as CartProductQuantity).value
-					  }
-					: product
-			),
-			length: state.length - (action.payload as CartProductQuantity).value
-		};
-	} else return state;
+	}
+
+	return state;
 };
 
 export default cartReducer;

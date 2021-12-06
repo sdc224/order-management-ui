@@ -1,9 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import Cart from "../Cart";
+import { CartButton } from "../Buttons";
 import { Box, Container, IconButton } from "@material-ui/core";
 import useTopBarStyles from "./topBar.styles";
 import PersonOutlineIcon from "@material-ui/icons/PersonOutline";
@@ -75,7 +72,7 @@ const TopBar: React.FC<TopBarProps> = ({ position = "relative" }) => {
 							<IconButton className={classes.iconButton}>
 								<PersonOutlineIcon />
 							</IconButton>
-							<Cart />
+							<CartButton />
 						</Box>
 					</Container>
 				</Box>

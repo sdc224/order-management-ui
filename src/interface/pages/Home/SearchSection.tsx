@@ -32,7 +32,8 @@ const SearchSection: React.FC<SearchSectionProps> = ({ products = [] }) => {
 						{products.map((product) => (
 							<Grid key={product.id} item xs={6} md={4} lg={3}>
 								<OfferCard
-									title={product.name}
+									id={product.id}
+									name={product.name}
 									price={product.price || 0}
 									crossedPrice={getMockBetweenTwo(
 										product.price || 0,
